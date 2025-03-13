@@ -47,20 +47,20 @@ python app.py
 Open [http://127.0.0.1:5000/](http://127.0.0.1:5000/) in your browser.
 
 ## 📸 Screenshots
-  *Upload the API key*
+  Upload the API key
 
   ![Upload the API key](results/p1.png)
 
-  *User's input*
+  User's input
 
   ![User,s input](results/p2.png)
 
-    *Diet Plan*
+    Diet Plan
 
   ![Diet Plan](results/p3.png)
   
 
-    *Wokout Plan*
+    Wokout Plan
 
   ![Workout Plan](results/p4.png)
 
@@ -72,16 +72,5 @@ Open [http://127.0.0.1:5000/](http://127.0.0.1:5000/) in your browser.
 * **Full-Stack Web App** implementation with React or Vue frontend
 * **Mobile App Development** for on-the-go fitness planning
 
-## 🤝 Contributing
-Contributions are welcome! Feel free to **fork** the repository, submit issues, or create pull requests. Check out our [contributing guidelines](CONTRIBUTING.md) for more information.
-
-## 📜 License
-This project is licensed under the **MIT License**. See the [`LICENSE`](LICENSE) file for details.
-
-## 📬 Contact
-For any inquiries or collaboration opportunities, reach out via:
-* **Email**: your.email@example.com
-* **LinkedIn**: [Your LinkedIn Profile](https://linkedin.com/in/yourprofile)
-* **GitHub**: [Your GitHub Profile](https://github.com/yourusername)
 
 ## 💪 Stay fit and keep coding! 🚀
