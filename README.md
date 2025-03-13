@@ -47,8 +47,24 @@ python app.py
 Open [http://127.0.0.1:5000/](http://127.0.0.1:5000/) in your browser.
 
 ## 📸 Screenshots
-*Include screenshots of your application here to showcase the UI and features.*
+  *Upload the API key*
 
+  ![Upload the API key](results/p1.png)
+
+  *User's input*
+
+  ![User,s input](results/p2.png)
+
+    *Diet Plan*
+
+  ![Diet Plan](results/p3.png)
+  
+
+    *Wokout Plan*
+
+  ![Workout Plan](results/p4.png)
+
+  
 ## 🛠️ Future Enhancements
 * **User Authentication** for personalized tracking and progress monitoring
 * **Exercise and Diet Database Expansion** for more diverse recommendations
