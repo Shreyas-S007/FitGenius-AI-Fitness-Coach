@@ -1,0 +1,140 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-10">
+        <h1 class="text-center mb-4"><i class="fas fa-dumbbell me-2"></i> Your Personalized Plans</h1>
+
+        {% if error_message %}
+        <div class="alert alert-danger" role="alert">
+            {{ error_message }}
+        </div>
+        {% endif %}
+
+        <!-- Dietary Plan -->
+        <div class="card plan-section">
+            <div class="card-header">
+                <i class="fas fa-utensils me-2"></i> Your Personalized Dietary Plan
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-8">
+                        <h4 class="section-title"><i class="fas fa-bullseye me-2"></i> Why this plan works</h4>
+                        <div class="info-box mb-4">
+                            {{ dietary_plan.why_this_plan_works }}
+                        </div>
+
+                        <h4 class="section-title"><i class="fas fa-utensils me-2"></i> Meal Plan</h4>
+                        <div class="meal-plan-content mb-4">
+                            {% set meal_plan_paragraphs = dietary_plan.meal_plan.split('\n\n') %}
+                            {% for paragraph in meal_plan_paragraphs %}
+                                {% if paragraph.strip().startswith('Breakfast:') or paragraph.strip().startswith('Lunch:') or paragraph.strip().startswith('Dinner:') or paragraph.strip().startswith('Snacks:') %}
+                                    <div class="meal-section">
+                                        <h5 class="meal-title">{{ paragraph.split(':')[0] }}</h5>
+                                        <div class="meal-details">{{ paragraph.split(':', 1)[1] }}</div>
+                                    </div>
+                                {% else %}
+                                    <p>{{ paragraph }}</p>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <h4 class="section-title"><i class="fas fa-exclamation-triangle me-2"></i> Important Considerations</h4>
+                        {% for consideration in dietary_plan.important_considerations %}
+                        <div class="warning-box">
+                            {{ consideration }}
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Fitness Plan -->
+        <div class="card plan-section">
+            <div class="card-header">
+                <i class="fas fa-dumbbell me-2"></i> Your Personalized Fitness Plan
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-8">
+                        <h4 class="section-title"><i class="fas fa-bullseye me-2"></i> Goals</h4>
+                        <div class="success-box mb-4">
+                            {{ fitness_plan.goals }}
+                        </div>
+
+                        <h4 class="section-title"><i class="fas fa-running me-2"></i> Exercise Routine</h4>
+                        <div class="workout-plan-content mb-4">
+                            {% set workout_parts = fitness_plan.routine.split('\n\n') %}
+                            {% for part in workout_parts %}
+                                {% if part.strip().startswith('Warm-up:') or part.strip().startswith('Warm up:') or part.strip().startswith('Main workout:') or part.strip().startswith('Main Workout:') or part.strip().startswith('Cool-down:') or part.strip().startswith('Cool down:') or part.strip().startswith('Strength Training:') or part.strip().startswith('Cardio:') or part.strip().startswith('Rest Day:') %}
+                                    <div class="workout-section">
+                                        <h5 class="workout-title">{{ part.split(':')[0] }}</h5>
+                                        <div class="workout-details">{{ part.split(':', 1)[1] }}</div>
+                                    </div>
+                                {% else %}
+                                    <p>{{ part }}</p>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <h4 class="section-title"><i class="fas fa-lightbulb me-2"></i> Pro Tips</h4>
+                        {% for tip in fitness_plan.tips %}
+                        <div class="info-box">
+                            {{ tip }}
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Q&A Section -->
+        <div class="card">
+            <div class="card-header">
+                <i class="fas fa-question-circle me-2"></i> Questions about your plan?
+            </div>
+            <div class="card-body">
+                <form method="POST" action="/">
+                    <div class="mb-3">
+                        <label for="question" class="form-label">What would you like to know?</label>
+                        <input type="text" class="form-control" id="question" name="question" required>
+                    </div>
+                    <button type="submit" name="ask_question" class="btn btn-primary">
+                        <i class="fas fa-paper-plane me-2"></i> Get Answer
+                    </button>
+                </form>
+
+                {% if qa_pairs %}
+                <hr>
+                <h4 class="mt-4 mb-3">
+                    <i class="fas fa-comments me-2"></i> Q&A History
+                </h4>
+                {% for question, answer in qa_pairs %}
+                <div class="card qa-card mb-3">
+                    <div class="card-body">
+                        <div class="qa-question mb-2">
+                            <i class="fas fa-question-circle me-2"></i> {{ question }}
+                        </div>
+                        <div class="qa-answer">
+                            <i class="fas fa-comment-dots me-2"></i> {{ answer | safe }}
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="text-center mt-4">
+            <a href="/" class="btn btn-outline-primary">
+                <i class="fas fa-arrow-left me-2"></i> Back to Profile
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

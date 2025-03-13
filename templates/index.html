@@ -1,0 +1,120 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-10">
+        <h1 class="text-center mb-4"><i class="fas fa-dumbbell me-2"></i> AI Health & Fitness Planner</h1>
+        
+        <div class="card mb-4">
+            <div class="card-body p-4">
+                <p class="lead text-center">
+                    Get personalized dietary and fitness plans tailored to your goals and preferences.
+                    Our AI-powered system considers your unique profile to create the perfect plan for you.
+                </p>
+            </div>
+        </div>
+        
+        {% if error_message %}
+        <div class="alert alert-danger" role="alert">
+            {{ error_message }}
+        </div>
+        {% endif %}
+        
+        <form method="POST" action="/">
+            <div class="card">
+                <div class="card-header">
+                    <i class="fas fa-key me-2"></i> API Configuration
+                </div>
+                <div class="card-body api-key-section">
+                    <div class="mb-3">
+                        <label for="gemini_api_key" class="form-label">Gemini API Key</label>
+                        <input type="password" class="form-control" id="gemini_api_key" name="gemini_api_key" required>
+                        <div class="form-text">Enter your Gemini API key to access the service</div>
+                        <div class="mt-2">
+                            <a href="https://aistudio.google.com/apikey" target="_blank" class="btn btn-sm btn-outline-primary">
+                                <i class="fas fa-external-link-alt me-1"></i> Get your API key here
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card mt-4">
+                <div class="card-header">
+                    <i class="fas fa-user me-2"></i> Your Profile
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="age" class="form-label">Age</label>
+                                <input type="number" class="form-control" id="age" name="age" min="10" max="100" required>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="height" class="form-label">Height (cm)</label>
+                                <input type="number" class="form-control" id="height" name="height" min="100" max="250" step="0.1" required>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="activity_level" class="form-label">Activity Level</label>
+                                <select class="form-select" id="activity_level" name="activity_level" required>
+                                    <option value="Sedentary">Sedentary</option>
+                                    <option value="Lightly Active">Lightly Active</option>
+                                    <option value="Moderately Active">Moderately Active</option>
+                                    <option value="Very Active">Very Active</option>
+                                    <option value="Extremely Active">Extremely Active</option>
+                                </select>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="dietary_preferences" class="form-label">Dietary Preferences</label>
+                                <select class="form-select" id="dietary_preferences" name="dietary_preferences" required>
+                                    <option value="Vegetarian">Vegetarian</option>
+                                    <option value="Keto">Keto</option>
+                                    <option value="Gluten Free">Gluten Free</option>
+                                    <option value="Low Carb">Low Carb</option>
+                                    <option value="Dairy Free">Dairy Free</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="weight" class="form-label">Weight (kg)</label>
+                                <input type="number" class="form-control" id="weight" name="weight" min="20" max="300" step="0.1" required>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="sex" class="form-label">Sex</label>
+                                <select class="form-select" id="sex" name="sex" required>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="fitness_goals" class="form-label">Fitness Goals</label>
+                                <select class="form-select" id="fitness_goals" name="fitness_goals" required>
+                                    <option value="Lose Weight">Lose Weight</option>
+                                    <option value="Gain Muscle">Gain Muscle</option>
+                                    <option value="Endurance">Endurance</option>
+                                    <option value="Stay Fit">Stay Fit</option>
+                                    <option value="Strength Training">Strength Training</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="d-grid gap-2 mt-3">
+                        <button type="submit" name="generate_plan" class="btn btn-primary">
+                            <i class="fas fa-bullseye me-2"></i> Generate My Personalized Plan
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
